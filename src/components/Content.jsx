@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState , useEffect } from 'react';
 import iPhoneServ from '/iphone_content.svg';
 import World from '/world_connect.svg';
 import Partners from '../components/Partners';
@@ -17,18 +17,37 @@ import { BiTargetLock } from "react-icons/bi";
 
 import { faq } from '../constants/data';
 
-
-
 import Button from './Button';
 
+import gsap from 'gsap';
 
+import ScrollTrigger from "gsap/ScrollTrigger"
+import { useGSAP } from '@gsap/react';
+gsap.registerPlugin(ScrollTrigger);
 
 const Content = () => {
 
-  const [activeIndex, setActiveIndex] = useState(0);
+  useGSAP(()=>{
+    
+    const tl = gsap.timeline(
+      {
+        scrollTrigger:{
+          trigger:".two",
+          start:"top 50%",
+          
+          
+        }
+      }
+    );
 
+      tl.from(".notification" , {x:-400 , opacity:0,stagger:0.5,delay:0.3});
+  
+})
 
-  console.log(activeIndex, "Index")
+ 
+
+const [activeIndex, setActiveIndex] = useState(0);
+
   return (
     <div className='w-full  relative shadow-3xl  shadow-ui-5 z-40 py-8 px-6 md:px-12 lg:px-16 xl:px-48 '>
       <Partners />
@@ -85,7 +104,8 @@ const Content = () => {
         </div>
       </section>
 
-      <section className='w-full  flex flex-col md:flex-row-reverse gap-4   mb-24'>
+      {/* Transaction Section */}
+      <section className=' w-full  flex flex-col md:flex-row-reverse gap-4   mb-24'>
         <div className='md: px-8 my-2 '>
           <div className='  md:text-start '>
             <h1 className='text-text-2 font-Manrope h3 lg:h2 leading-tight font-[700] py-4 text-center md:text-start'>Transforming Transactions, One Click at a Time</h1>
@@ -122,9 +142,9 @@ const Content = () => {
 
 
 
-        <div className='flex flex-col gap-4 xl:gap-6 bg-ui-6 p-4 xl:p-8 w-full h-max rounded-2xl my-8'>
+        <div className='two flex flex-col gap-4 xl:gap-6 bg-ui-6 p-4 xl:p-8 w-full h-max rounded-2xl my-8'>
 
-          <div className='flex justify-between items-center rounded-2xl bg-white p-4'>
+          <div className='notification flex justify-between items-center rounded-2xl bg-white p-4'>
             <div className=' flex  '>
               <span className='p-4 bg-ui-5 rounded-xl h6 text-center text-text-2 flex items-center '>
                 <SiAmazon />
@@ -139,7 +159,7 @@ const Content = () => {
 
           </div>
 
-          <div className='flex justify-between items-center rounded-2xl bg-white p-4 '>
+          <div className='notification flex justify-between items-center rounded-2xl bg-white p-4 '>
             <div className=' flex  '>
               <span className='p-4 bg-ui-5 rounded-xl h6 text-center text-text-2 flex items-center '>
                 <SiUber />
@@ -154,7 +174,7 @@ const Content = () => {
 
           </div>
 
-          <div className='flex justify-between items-center rounded-2xl bg-white p-4 '>
+          <div className=' notification flex justify-between items-center rounded-2xl bg-white p-4 '>
             <div className=' flex  '>
               <span className='p-4 bg-ui-5 rounded-xl h6 text-center text-text-2 flex items-center '>
                 <SiPaypal />
@@ -172,7 +192,7 @@ const Content = () => {
         </div>
       </section>
 
-        {/* FAQS */}
+        {/* FAQS Section*/}
       <section className='w-full  flex flex-col gap-4 justify-center   md:flex-row mb-24'>
         <div className='md: px-2 md:px-4 xl:px-12 '>
           <div className=' text-start items-start '>
@@ -223,7 +243,7 @@ const Content = () => {
       </section>
 
 
-
+        {/* Connect Section */}
       <section className='w-full  flex flex-col gap-4 justify-center items-center  md:flex-row mb-24'>
         <div className='md: px-8 '>
           <div className='  md:text-start '>
