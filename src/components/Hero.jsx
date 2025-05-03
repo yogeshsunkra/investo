@@ -49,7 +49,12 @@ const Hero = () => {
             stagger:0.1,
             opacity:0
             
-        },'<')
+        },'<'),
+        tl.from(h1,{
+            y:100,
+            opacity:0,
+            duration:1
+        })
 
     }
 
@@ -126,7 +131,7 @@ const Hero = () => {
                     
                 </div>
 
-                {/* 4 */}
+                     {/* 4 */}
                 <div  className='boxR absolute flex flex-col justify-between py-2 bg-white rounded-3xl px-4 
                               z-20 top-40 right-0  shadow-2xl  shadow-ui-5 drop-shadow-2xl'>
                                     <span className='flex items-center justify-center'>
